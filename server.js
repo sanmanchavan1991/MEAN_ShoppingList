@@ -2,16 +2,26 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import path from 'path';
+import config from './config';
+import itemRoutes from './routes/api/items';
+//import {MONGO_URI} from './config/keys';
+
 // import { createRequire } from 'module';
 // const require = createRequire(import.meta.url);
+const { MONGO_URI, MONGO_DB_NAME } = config;
+const db = `${MONGO_URI}`;
+
 const app=express();
 
-const itemRoutes =require('./routes/api/items');
+//const itemRoutes =require('./routes/api/items');
 //bodyparser middleware
+
 app.use(bodyParser.json());
 
 //DB config
-const db=require('./config/keys').MONGO_URI;
+//const db=require('./config/keys').MONGO_URI;
+//const db=MONGO_URI;
+
 console.log("MongoDB db==>",db)
 //connect to Mongo
 mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true })
