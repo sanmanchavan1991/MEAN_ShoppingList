@@ -2,7 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import path from 'path';
-
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 const app=express();
 
 const itemRoutes =require('./routes/api/items');
